@@ -27,6 +27,12 @@ myweb3(rmo) async {
   print(response.body);
 }
 
+myweb4(sta) async {
+  var url = "http://192.168.43.33/cgi-bin/start.py?x=${sta}";
+  var response = await http.get(url);
+  print(response.body);
+}
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   String imname;
@@ -34,6 +40,7 @@ class MyApp extends StatelessWidget {
   String stop;
   String pull;
   String remove;
+  String start;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -141,6 +148,25 @@ class MyApp extends StatelessWidget {
                     myweb3(remove);
                   },
                   child: Text('Remove'),
+                ),
+                TextField(
+                  onChanged: (value) {
+                    start = value;
+                  },
+                  autocorrect: false,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "Enter container name",
+                    prefixIcon: Icon(Icons.perm_identity),
+                  ),
+                ),
+                FlatButton(
+                  onPressed: () {
+                    // print('hi');
+                    myweb4(start);
+                  },
+                  child: Text('Start'),
                 ),
               ],
             ),
