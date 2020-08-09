@@ -37,16 +37,9 @@ myweb4(sta) async {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-  String imname;
-  String coname;
-  String stop;
-  String pull;
-  String remove;
-  String start;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlue,
       appBar: AppBar(
         title: Center(child: Text('DOCKER APP')),
         backgroundColor: Colors.blue,
@@ -63,33 +56,54 @@ class MyApp extends StatelessWidget {
                 child: Container(
                   width: double.infinity,
                   height: double.infinity,
-                  child: Image.network(
-                      'https://raw.githubusercontent.com/bansalsajal49/imagetest/master/docker.png'),
+                  child: Image.asset('docker.png'),
                 ),
               ),
             ),
             ListTile(
               title: Text('LAUNCH'),
-              leading: IconButton(icon: Icon(Icons.launch), onPressed: null),
+              leading: IconButton(
+                  icon: Icon(Icons.launch),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Mylaunch()));
+                  }),
             ),
             ListTile(
               title: Text('STOP'),
-              leading: IconButton(icon: Icon(Icons.stop), onPressed: null),
+              leading: IconButton(
+                  icon: Icon(Icons.launch),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Mystop()));
+                  }),
             ),
             ListTile(
               title: Text('START'),
-              leading:
-                  IconButton(icon: Icon(Icons.play_arrow), onPressed: null),
+              leading: IconButton(
+                  icon: Icon(Icons.launch),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Mystart()));
+                  }),
             ),
             ListTile(
               title: Text('PULL'),
-              leading:
-                  IconButton(icon: Icon(Icons.cloud_download), onPressed: null),
+              leading: IconButton(
+                  icon: Icon(Icons.launch),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Mypull()));
+                  }),
             ),
             ListTile(
               title: Text('REMOVE'),
-              leading:
-                  IconButton(icon: Icon(Icons.remove_circle), onPressed: null),
+              leading: IconButton(
+                  icon: Icon(Icons.launch),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Myremove()));
+                  }),
             ),
           ],
         ),
@@ -99,6 +113,31 @@ class MyApp extends StatelessWidget {
           width: double.infinity,
           height: double.infinity,
           color: Colors.amberAccent,
+          child: Column(
+            children: <Widget>[],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Mylaunch extends StatelessWidget {
+  String imname;
+  String coname;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        leading: Icon(Icons.ac_unit),
+        title: Text('LAUNCH'),
+      ),
+      body: Center(
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          color: Colors.amber,
           child: Column(
             children: <Widget>[
               TextField(
@@ -132,6 +171,31 @@ class MyApp extends StatelessWidget {
                 },
                 child: Text('Launch'),
               ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Mystop extends StatelessWidget {
+  String stop;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        leading: Icon(Icons.ac_unit),
+        title: Text('STOP'),
+      ),
+      body: Center(
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          color: Colors.amber,
+          child: Column(
+            children: <Widget>[
               TextField(
                 onChanged: (value) {
                   stop = value;
@@ -151,44 +215,31 @@ class MyApp extends StatelessWidget {
                 },
                 child: Text('Stop'),
               ),
-              TextField(
-                onChanged: (value) {
-                  pull = value;
-                },
-                autocorrect: false,
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "Enter image name",
-                  prefixIcon: Icon(Icons.get_app),
-                ),
-              ),
-              FlatButton(
-                onPressed: () {
-                  // print('hi');
-                  myweb2(pull);
-                },
-                child: Text('Pull'),
-              ),
-              TextField(
-                onChanged: (value) {
-                  remove = value;
-                },
-                autocorrect: false,
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "Enter container name",
-                  prefixIcon: Icon(Icons.perm_identity),
-                ),
-              ),
-              FlatButton(
-                onPressed: () {
-                  // print('hi');
-                  myweb3(remove);
-                },
-                child: Text('Remove'),
-              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Mystart extends StatelessWidget {
+  String start;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        leading: Icon(Icons.ac_unit),
+        title: Text('START'),
+      ),
+      body: Center(
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          color: Colors.amber,
+          child: Column(
+            children: <Widget>[
               TextField(
                 onChanged: (value) {
                   start = value;
@@ -216,7 +267,90 @@ class MyApp extends StatelessWidget {
   }
 }
 
-/*class Mylaunch extends StatelessWidget {
+class Mypull extends StatelessWidget {
+  String pull;
   @override
   Widget build(BuildContext context) {
-    return*/
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        leading: Icon(Icons.ac_unit),
+        title: Text('PULL'),
+      ),
+      body: Center(
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          color: Colors.amber,
+          child: Column(
+            children: <Widget>[
+              TextField(
+                onChanged: (value) {
+                  pull = value;
+                },
+                autocorrect: false,
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "Enter image name",
+                  prefixIcon: Icon(Icons.get_app),
+                ),
+              ),
+              FlatButton(
+                onPressed: () {
+                  // print('hi');
+                  myweb2(pull);
+                },
+                child: Text('Pull'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Myremove extends StatelessWidget {
+  String remove;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        leading: Icon(Icons.ac_unit),
+        title: Text('REMOVE'),
+      ),
+      body: Center(
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          color: Colors.amber,
+          child: Column(
+            children: <Widget>[
+              TextField(
+                onChanged: (value) {
+                  remove = value;
+                },
+                autocorrect: false,
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "Enter container name",
+                  prefixIcon: Icon(Icons.perm_identity),
+                ),
+              ),
+              FlatButton(
+                onPressed: () {
+                  // print('hi');
+                  myweb3(remove);
+                },
+                child: Text('Remove'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
