@@ -35,87 +35,124 @@ myweb4(sta) async {
   print(response.body);
 }
 
+myrun() async {
+  var url = "http://192.168.43.33/cgi-bin/run.py";
+  var response = await http.get(url);
+  print(response.body);
+}
+
+myconall() async {
+  var url = "http://192.168.43.33/cgi-bin/conall.py";
+  var response = await http.get(url);
+  print(response.body);
+}
+
+myima() async {
+  var url = "http://192.168.43.33/cgi-bin/images.py";
+  var response = await http.get(url);
+  print(response.body);
+}
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Center(child: Text('DOCKER APP')),
         backgroundColor: Colors.blue,
         actions: <Widget>[
           Icon(Icons.cloud_circle),
-          Icon(Icons.feedback),
         ],
       ),
       drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            DrawerHeader(
-              child: Center(
-                child: Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: Image.asset('docker.png'),
+        child: Container(
+          color: Colors.grey,
+          child: ListView(
+            children: <Widget>[
+              DrawerHeader(
+                child: Center(
+                  child: Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: Image.asset('menu.jpeg'),
+                  ),
                 ),
               ),
-            ),
-            ListTile(
-              title: Text('LAUNCH'),
-              leading: IconButton(
-                  icon: Icon(Icons.launch),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Mylaunch()));
-                  }),
-            ),
-            ListTile(
-              title: Text('STOP'),
-              leading: IconButton(
-                  icon: Icon(Icons.launch),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Mystop()));
-                  }),
-            ),
-            ListTile(
-              title: Text('START'),
-              leading: IconButton(
-                  icon: Icon(Icons.launch),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Mystart()));
-                  }),
-            ),
-            ListTile(
-              title: Text('PULL'),
-              leading: IconButton(
-                  icon: Icon(Icons.launch),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Mypull()));
-                  }),
-            ),
-            ListTile(
-              title: Text('REMOVE'),
-              leading: IconButton(
-                  icon: Icon(Icons.launch),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Myremove()));
-                  }),
-            ),
-          ],
+              ListTile(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Myrun()));
+                },
+                title: Text(' VIEW RUNNING CONTAINERS'),
+                leading: Icon(Icons.directions_run),
+              ),
+              ListTile(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Myconall()));
+                },
+                title: Text(' VIEW ALL CONTAINERS'),
+                leading: Icon(Icons.all_inclusive),
+              ),
+              ListTile(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Myimages()));
+                },
+                title: Text('VIEW IMAGES'),
+                leading: Icon(Icons.all_out),
+              ),
+              ListTile(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Mylaunch()));
+                },
+                title: Text('LAUNCH'),
+                leading: Icon(Icons.launch),
+              ),
+              ListTile(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Mystop()));
+                },
+                title: Text('STOP'),
+                leading: Icon(Icons.stop),
+              ),
+              ListTile(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Mystart()));
+                },
+                title: Text('START'),
+                leading: Icon(Icons.play_arrow),
+              ),
+              ListTile(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Mypull()));
+                },
+                title: Text('PULL'),
+                leading: Icon(Icons.cloud_download),
+              ),
+              ListTile(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Myremove()));
+                },
+                title: Text('REMOVE'),
+                leading: Icon(Icons.remove_circle),
+              ),
+            ],
+          ),
         ),
       ),
       body: Center(
         child: Container(
           width: double.infinity,
           height: double.infinity,
-          color: Colors.amberAccent,
-          child: Column(
-            children: <Widget>[],
-          ),
+          child: Image.asset('dockerhome.png'),
         ),
       ),
     );
@@ -128,18 +165,23 @@ class Mylaunch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        leading: Icon(Icons.ac_unit),
+        leading: Icon(Icons.accessibility_new),
         title: Text('LAUNCH'),
       ),
       body: Center(
         child: Container(
           width: double.infinity,
-          height: double.infinity,
+          height: 400,
           color: Colors.amber,
           child: Column(
             children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset('docker.png'),
+              ),
               TextField(
                 onChanged: (value) {
                   coname = value;
@@ -184,18 +226,23 @@ class Mystop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        leading: Icon(Icons.ac_unit),
+        leading: Icon(Icons.accessibility_new),
         title: Text('STOP'),
       ),
       body: Center(
         child: Container(
           width: double.infinity,
-          height: double.infinity,
+          height: 300,
           color: Colors.amber,
           child: Column(
             children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset('docker.png'),
+              ),
               TextField(
                 onChanged: (value) {
                   stop = value;
@@ -228,18 +275,23 @@ class Mystart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        leading: Icon(Icons.ac_unit),
+        leading: Icon(Icons.accessibility_new),
         title: Text('START'),
       ),
       body: Center(
         child: Container(
           width: double.infinity,
-          height: double.infinity,
+          height: 300,
           color: Colors.amber,
           child: Column(
             children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset('docker.png'),
+              ),
               TextField(
                 onChanged: (value) {
                   start = value;
@@ -272,18 +324,23 @@ class Mypull extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        leading: Icon(Icons.ac_unit),
+        leading: Icon(Icons.accessibility_new),
         title: Text('PULL'),
       ),
       body: Center(
         child: Container(
           width: double.infinity,
-          height: double.infinity,
+          height: 300,
           color: Colors.amber,
           child: Column(
             children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset('docker.png'),
+              ),
               TextField(
                 onChanged: (value) {
                   pull = value;
@@ -316,18 +373,23 @@ class Myremove extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        leading: Icon(Icons.ac_unit),
+        leading: Icon(Icons.accessibility_new),
         title: Text('REMOVE'),
       ),
       body: Center(
         child: Container(
           width: double.infinity,
-          height: double.infinity,
+          height: 300,
           color: Colors.amber,
           child: Column(
             children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset('docker.png'),
+              ),
               TextField(
                 onChanged: (value) {
                   remove = value;
@@ -346,6 +408,114 @@ class Myremove extends StatelessWidget {
                   myweb3(remove);
                 },
                 child: Text('Remove'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Myrun extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey,
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        leading: Icon(Icons.accessibility_new),
+        title: Text('RUNNING CONTAINERS'),
+      ),
+      body: Center(
+        child: Container(
+          width: double.infinity,
+          height: 300,
+          color: Colors.amber,
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset('docker.png'),
+              ),
+              FlatButton(
+                onPressed: () {
+                  // print('hi');
+                  myrun();
+                },
+                child: Text('View Running Containers'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Myconall extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey,
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        leading: Icon(Icons.accessibility_new),
+        title: Text('ALL CONTAINERS'),
+      ),
+      body: Center(
+        child: Container(
+          width: double.infinity,
+          height: 300,
+          color: Colors.amber,
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset('docker.png'),
+              ),
+              FlatButton(
+                onPressed: () {
+                  // print('hi');
+                  myconall();
+                },
+                child: Text('View All Containers'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Myimages extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey,
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        leading: Icon(Icons.accessibility_new),
+        title: Text('ALL IMAGES'),
+      ),
+      body: Center(
+        child: Container(
+          width: double.infinity,
+          height: 300,
+          color: Colors.amber,
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset('docker.png'),
+              ),
+              FlatButton(
+                onPressed: () {
+                  // print('hi');
+                  myima();
+                },
+                child: Text('View All Images'),
               ),
             ],
           ),
