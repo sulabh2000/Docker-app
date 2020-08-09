@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
-  runApp(MaterialApp(home: MyApp(), debugShowCheckedModeBanner: false));
+  runApp(MaterialApp(
+      title: "DOCKER APP", home: MyApp(), debugShowCheckedModeBanner: false));
 }
 
 myweb(cna, ina) async {
@@ -53,6 +55,16 @@ myima() async {
   print(response.body);
 }
 
+mymessg() {
+  Fluttertoast.showToast(
+    msg: "Please Wait, Request in Progress...",
+    gravity: ToastGravity.BOTTOM,
+    toastLength: Toast.LENGTH_LONG,
+    backgroundColor: Colors.blue,
+    textColor: Colors.white,
+  );
+}
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -60,7 +72,13 @@ class MyApp extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Center(child: Text('DOCKER APP')),
+        title: Center(
+            child: Text(
+          'DOCKER APP',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        )),
         backgroundColor: Colors.blue,
         actions: <Widget>[
           Icon(Icons.cloud_circle),
@@ -211,6 +229,7 @@ class Mylaunch extends StatelessWidget {
                   onPressed: () {
                     // print('hi');
                     myweb(coname, imname);
+                    mymessg();
                   },
                   child: Text('Launch'),
                 ),
@@ -262,6 +281,7 @@ class Mystop extends StatelessWidget {
                   onPressed: () {
                     // print('hi');
                     myweb1(stop);
+                    mymessg();
                   },
                   child: Text('Stop'),
                 ),
@@ -313,6 +333,7 @@ class Mystart extends StatelessWidget {
                   onPressed: () {
                     // print('hi');
                     myweb4(start);
+                    mymessg();
                   },
                   child: Text('Start'),
                 ),
@@ -364,6 +385,7 @@ class Mypull extends StatelessWidget {
                   onPressed: () {
                     // print('hi');
                     myweb2(pull);
+                    mymessg();
                   },
                   child: Text('Pull'),
                 ),
@@ -415,6 +437,7 @@ class Myremove extends StatelessWidget {
                   onPressed: () {
                     // print('hi');
                     myweb3(remove);
+                    mymessg();
                   },
                   child: Text('Remove'),
                 ),
@@ -453,6 +476,7 @@ class Myrun extends StatelessWidget {
                   onPressed: () {
                     // print('hi');
                     myrun();
+                    mymessg();
                   },
                   child: Text('View Running Containers'),
                 ),
@@ -491,6 +515,7 @@ class Myconall extends StatelessWidget {
                   onPressed: () {
                     // print('hi');
                     myconall();
+                    mymessg();
                   },
                   child: Text('View All Containers'),
                 ),
@@ -529,6 +554,7 @@ class Myimages extends StatelessWidget {
                   onPressed: () {
                     // print('hi');
                     myima();
+                    mymessg();
                   },
                   child: Text('View All Images'),
                 ),
