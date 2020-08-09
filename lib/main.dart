@@ -206,12 +206,14 @@ class Mylaunch extends StatelessWidget {
                   prefixIcon: Icon(Icons.get_app),
                 ),
               ),
-              FlatButton(
-                onPressed: () {
-                  // print('hi');
-                  myweb(coname, imname);
-                },
-                child: Text('Launch'),
+              Card(
+                child: FlatButton(
+                  onPressed: () {
+                    // print('hi');
+                    myweb(coname, imname);
+                  },
+                  child: Text('Launch'),
+                ),
               ),
             ],
           ),
@@ -255,12 +257,14 @@ class Mystop extends StatelessWidget {
                   prefixIcon: Icon(Icons.perm_identity),
                 ),
               ),
-              FlatButton(
-                onPressed: () {
-                  // print('hi');
-                  myweb1(stop);
-                },
-                child: Text('Stop'),
+              Card(
+                child: FlatButton(
+                  onPressed: () {
+                    // print('hi');
+                    myweb1(stop);
+                  },
+                  child: Text('Stop'),
+                ),
               ),
             ],
           ),
@@ -304,12 +308,14 @@ class Mystart extends StatelessWidget {
                   prefixIcon: Icon(Icons.perm_identity),
                 ),
               ),
-              FlatButton(
-                onPressed: () {
-                  // print('hi');
-                  myweb4(start);
-                },
-                child: Text('Start'),
+              Card(
+                child: FlatButton(
+                  onPressed: () {
+                    // print('hi');
+                    myweb4(start);
+                  },
+                  child: Text('Start'),
+                ),
               ),
             ],
           ),
@@ -353,12 +359,14 @@ class Mypull extends StatelessWidget {
                   prefixIcon: Icon(Icons.get_app),
                 ),
               ),
-              FlatButton(
-                onPressed: () {
-                  // print('hi');
-                  myweb2(pull);
-                },
-                child: Text('Pull'),
+              Card(
+                child: FlatButton(
+                  onPressed: () {
+                    // print('hi');
+                    myweb2(pull);
+                  },
+                  child: Text('Pull'),
+                ),
               ),
             ],
           ),
@@ -402,12 +410,14 @@ class Myremove extends StatelessWidget {
                   prefixIcon: Icon(Icons.perm_identity),
                 ),
               ),
-              FlatButton(
-                onPressed: () {
-                  // print('hi');
-                  myweb3(remove);
-                },
-                child: Text('Remove'),
+              Card(
+                child: FlatButton(
+                  onPressed: () {
+                    // print('hi');
+                    myweb3(remove);
+                  },
+                  child: Text('Remove'),
+                ),
               ),
             ],
           ),
@@ -438,12 +448,14 @@ class Myrun extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Image.asset('docker.png'),
               ),
-              FlatButton(
-                onPressed: () {
-                  // print('hi');
-                  myrun();
-                },
-                child: Text('View Running Containers'),
+              Card(
+                child: FlatButton(
+                  onPressed: () {
+                    // print('hi');
+                    myrun();
+                  },
+                  child: Text('View Running Containers'),
+                ),
               ),
             ],
           ),
@@ -474,12 +486,14 @@ class Myconall extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Image.asset('docker.png'),
               ),
-              FlatButton(
-                onPressed: () {
-                  // print('hi');
-                  myconall();
-                },
-                child: Text('View All Containers'),
+              Card(
+                child: FlatButton(
+                  onPressed: () {
+                    // print('hi');
+                    myconall();
+                  },
+                  child: Text('View All Containers'),
+                ),
               ),
             ],
           ),
@@ -510,12 +524,14 @@ class Myimages extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Image.asset('docker.png'),
               ),
-              FlatButton(
-                onPressed: () {
-                  // print('hi');
-                  myima();
-                },
-                child: Text('View All Images'),
+              Card(
+                child: FlatButton(
+                  onPressed: () {
+                    // print('hi');
+                    myima();
+                  },
+                  child: Text('View All Images'),
+                ),
               ),
             ],
           ),
