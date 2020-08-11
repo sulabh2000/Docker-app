@@ -7,52 +7,54 @@ void main() {
       title: "DOCKER APP", home: MyApp(), debugShowCheckedModeBanner: false));
 }
 
+var x;
 myweb(cna, ina) async {
   var url = "http://192.168.43.33/cgi-bin/dock.py?x=${cna}&y=${ina}";
   var response = await http.get(url);
-  print(response.body);
+  // print(response.body);
+  return response.body;
 }
 
 myweb1(sto) async {
   var url = "http://192.168.43.33/cgi-bin/stop.py?x=${sto}";
   var response = await http.get(url);
-  print(response.body);
+  return response.body;
 }
 
 myweb2(pul) async {
   var url = "http://192.168.43.33/cgi-bin/pull.py?x=${pul}";
   var response = await http.get(url);
-  print(response.body);
+  return response.body;
 }
 
 myweb3(rmo) async {
   var url = "http://192.168.43.33/cgi-bin/remove.py?x=${rmo}";
   var response = await http.get(url);
-  print(response.body);
+  return response.body;
 }
 
 myweb4(sta) async {
   var url = "http://192.168.43.33/cgi-bin/start.py?x=${sta}";
   var response = await http.get(url);
-  print(response.body);
+  return response.body;
 }
 
 myrun() async {
   var url = "http://192.168.43.33/cgi-bin/run.py";
   var response = await http.get(url);
-  print(response.body);
+  return response.body;
 }
 
 myconall() async {
   var url = "http://192.168.43.33/cgi-bin/conall.py";
   var response = await http.get(url);
-  print(response.body);
+  return response.body;
 }
 
 myima() async {
   var url = "http://192.168.43.33/cgi-bin/images.py";
   var response = await http.get(url);
-  print(response.body);
+  return response.body;
 }
 
 mymessg() {
@@ -226,10 +228,12 @@ class Mylaunch extends StatelessWidget {
               ),
               Card(
                 child: FlatButton(
-                  onPressed: () {
+                  onPressed: () async {
                     // print('hi');
-                    myweb(coname, imname);
                     mymessg();
+                    x = await myweb(coname, imname);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Myoutput()));
                   },
                   child: Text('Launch'),
                 ),
@@ -278,10 +282,12 @@ class Mystop extends StatelessWidget {
               ),
               Card(
                 child: FlatButton(
-                  onPressed: () {
+                  onPressed: () async {
                     // print('hi');
-                    myweb1(stop);
                     mymessg();
+                    x = await myweb1(stop);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Myoutput()));
                   },
                   child: Text('Stop'),
                 ),
@@ -330,10 +336,12 @@ class Mystart extends StatelessWidget {
               ),
               Card(
                 child: FlatButton(
-                  onPressed: () {
+                  onPressed: () async {
                     // print('hi');
-                    myweb4(start);
                     mymessg();
+                    x = await myweb4(start);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Myoutput()));
                   },
                   child: Text('Start'),
                 ),
@@ -382,10 +390,12 @@ class Mypull extends StatelessWidget {
               ),
               Card(
                 child: FlatButton(
-                  onPressed: () {
+                  onPressed: () async {
                     // print('hi');
-                    myweb2(pull);
                     mymessg();
+                    x = await myweb2(pull);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Myoutput()));
                   },
                   child: Text('Pull'),
                 ),
@@ -434,10 +444,12 @@ class Myremove extends StatelessWidget {
               ),
               Card(
                 child: FlatButton(
-                  onPressed: () {
+                  onPressed: () async {
                     // print('hi');
-                    myweb3(remove);
                     mymessg();
+                    x = await myweb3(remove);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Myoutput()));
                   },
                   child: Text('Remove'),
                 ),
@@ -473,10 +485,12 @@ class Myrun extends StatelessWidget {
               ),
               Card(
                 child: FlatButton(
-                  onPressed: () {
+                  onPressed: () async {
                     // print('hi');
-                    myrun();
                     mymessg();
+                    x = await myrun();
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Myoutput()));
                   },
                   child: Text('View Running Containers'),
                 ),
@@ -512,10 +526,12 @@ class Myconall extends StatelessWidget {
               ),
               Card(
                 child: FlatButton(
-                  onPressed: () {
+                  onPressed: () async {
                     // print('hi');
-                    myconall();
                     mymessg();
+                    x = await myconall();
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Myoutput()));
                   },
                   child: Text('View All Containers'),
                 ),
@@ -551,16 +567,38 @@ class Myimages extends StatelessWidget {
               ),
               Card(
                 child: FlatButton(
-                  onPressed: () {
+                  onPressed: () async {
                     // print('hi');
-                    myima();
                     mymessg();
+                    x = await myima();
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Myoutput()));
                   },
                   child: Text('View All Images'),
                 ),
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class Myoutput extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('OUTPUT'),
+        leading: Icon(Icons.receipt),
+        backgroundColor: Colors.blue,
+      ),
+      body: Center(
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          child: Center(child: Text('$x')),
         ),
       ),
     );
