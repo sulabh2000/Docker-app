@@ -57,6 +57,13 @@ myima() async {
   return response.body;
 }
 
+myexec(cna, ina) async {
+  var url = "http://192.168.43.33/cgi-bin/exec.py?x=${cna}&y=${ina}";
+  var response = await http.get(url);
+  // print(response.body);
+  return response.body;
+}
+
 mymessg() {
   Fluttertoast.showToast(
     msg: "Please Wait, Request in Progress...",
@@ -155,6 +162,14 @@ class MyApp extends StatelessWidget {
                 },
                 title: Text('PULL'),
                 leading: Icon(Icons.cloud_download),
+              ),
+              ListTile(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Myexec()));
+                },
+                title: Text('EXECUTE'),
+                leading: Icon(Icons.subdirectory_arrow_right),
               ),
               ListTile(
                 onTap: () {
@@ -575,6 +590,73 @@ class Myimages extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => Myoutput()));
                   },
                   child: Text('View All Images'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Myexec extends StatelessWidget {
+  String imname;
+  String coname;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey,
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        leading: Icon(Icons.accessibility_new),
+        title: Text('EXECUTE COMMANDS'),
+      ),
+      body: Center(
+        child: Container(
+          width: double.infinity,
+          height: 400,
+          color: Colors.amber,
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset('docker.png'),
+              ),
+              TextField(
+                onChanged: (value) {
+                  coname = value;
+                },
+                autocorrect: false,
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "Enter container name",
+                  prefixIcon: Icon(Icons.perm_identity),
+                ),
+              ),
+              TextField(
+                onChanged: (value) {
+                  imname = value;
+                },
+                autocorrect: false,
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "Enter command name",
+                  prefixIcon: Icon(Icons.get_app),
+                ),
+              ),
+              Card(
+                child: FlatButton(
+                  onPressed: () async {
+                    // print('hi');
+                    mymessg();
+                    x = await myexec(coname, imname);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Myoutput()));
+                  },
+                  child: Text('EXECUTE'),
                 ),
               ),
             ],
